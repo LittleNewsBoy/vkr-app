@@ -1,6 +1,5 @@
 package com.app.vkr.view.general;
 
-//import com.myapp.app.data.entity.AppUser;
 import com.app.vkr.entity.AON;
 import com.app.vkr.entity.AppUser;
 import com.app.vkr.service.AONService;

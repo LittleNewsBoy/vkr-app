@@ -7,10 +7,7 @@ import com.app.vkr.service.AONService;
 import com.app.vkr.service.CrmService;
 import com.app.vkr.view.adminView.UserForm;
 import com.app.vkr.view.layout.MainLayout;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.ComponentEvent;
-import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -39,7 +36,6 @@ import java.util.Locale;
 @PermitAll
 public class FormView extends FormLayout {
 	Binder<AON> binder = new BeanValidationBinder<>(AON.class);
-	//private final AONService service;
 	DatePicker date = new DatePicker("Дата:");
 	ComboBox<String> location = new ComboBox<>("Участок:");
 	TextField numberAON = new TextField("Номер АОН:");
@@ -60,11 +56,7 @@ public class FormView extends FormLayout {
 
 	public FormView() {
 		binder.bindInstanceFields(this);
-		//this.service = service;
-
-		add(
-				createLayout()
-		);
+		add(createLayout());
 	}
 
 	public void setAON(AON aon){
@@ -88,15 +80,6 @@ public class FormView extends FormLayout {
 
 		save.addClickShortcut(Key.ENTER);
 		cancel.addClickShortcut(Key.ESCAPE);
-
-		//save.addClickListener(event -> validateAndSave());
-		//delete.addClickListener(event -> fireEvent(new FormView.DeleteEvent(this, aon)));
-
-		//horizontalLayout.setSpacing(false);
-		//horizontalLayout.setFlexGrow(1, save);
-		//horizontalLayout.setFlexGrow(1, delete);
-		//horizontalLayout.setWidthFull();
-		//horizontalLayout.setJustifyContentMode(JustifyContentMode.AROUND);
 		return new HorizontalLayout(save,delete,cancel);
 	}
 
@@ -108,7 +91,6 @@ public class FormView extends FormLayout {
 			throw new RuntimeException(e);
 		}
 	}
-
 
 	private Component createLayout4() {
 		int charLimit = 2500;
@@ -128,11 +110,6 @@ public class FormView extends FormLayout {
 			e.getSource()
 					.setHelperText(e.getValue().length() + "/" + charLimit);
 		});
-		//horizontalLayout.setFlexGrow(1,description);
-		//horizontalLayout.setFlexGrow(1,decision);
-		//horizontalLayout.setJustifyContentMode(JustifyContentMode.AROUND);
-		//horizontalLayout.setWidthFull();
-		//horizontalLayout.setAlignItems(Alignment.BASELINE);
 		return new HorizontalLayout(description,decision);
 	}
 
@@ -140,28 +117,28 @@ public class FormView extends FormLayout {
 		manufacturingD.setLabel("Производственный:");
 		structuralD.setLabel("Конструкционный:");
 		culpritNotFound.setLabel("Виновник не установлен:");
-		//horizontalLayout.setFlexGrow(1,manufacturingD);
-		//horizontalLayout.setFlexGrow(1,structuralD);
-		//horizontalLayout.setFlexGrow(1,culpritNotFound);
-		//horizontalLayout.setJustifyContentMode(JustifyContentMode.AROUND);
-		//horizontalLayout.setWidthFull();
-		//horizontalLayout.setAlignItems(Alignment.BASELINE);
 		return new HorizontalLayout(manufacturingD,structuralD,culpritNotFound);
 	}
 
 	private Component createLayout2() {
-		product.setItems("111","222","333");
-		decimalNumber.setItems("1111","2222","3333");
+		product.setItems("Блок","Антенна","Плата");
+		product.addClientValidatedEventListener(e -> {
+			String chose1 = product.getValue();
+			if (chose1.equals("Блок")){
+				decimalNumber.setItems("ТСЮИ.202030.917","ТСЮИ.472417.392","ТСЮИ.398510.529");
+			}
+			else if (chose1.equals("Антенна")){
+				decimalNumber.setItems("ТСЮИ.183596.649","ТСЮИ.804003.232","ТСЮИ.333759.931");
+			}
+			else {
+				decimalNumber.setItems("ТСЮИ.294322.211","ТСЮИ.161907.968","ТСЮИ.552819.647");
+			}
+		});
+		decimalNumber.setItems("ТСЮИ.202030.917","ТСЮИ.472417.392","ТСЮИ.398510.529");
 		serialNumber.setRequiredIndicatorVisible(true);
 		serialNumber.setMinLength(1);
 		serialNumber.setMaxLength(18);
 		serialNumber.setHelperText("Формат: 123");
-		//horizontalLayout.setFlexGrow(1,product);
-		//horizontalLayout.setFlexGrow(1,decimalNumber);
-		//horizontalLayout.setFlexGrow(1,serialNumber);
-		//horizontalLayout.setJustifyContentMode(JustifyContentMode.AROUND);
-		//horizontalLayout.setWidthFull();
-		//horizontalLayout.setAlignItems(Alignment.BASELINE);
 		return new HorizontalLayout(product,decimalNumber,serialNumber);
 	}
 
@@ -169,17 +146,11 @@ public class FormView extends FormLayout {
 		Locale locale = new Locale("ru", "RU");
 		date.setLocale(locale);
 		date.setValue(LocalDate.now(ZoneId.systemDefault()));
-		location.setItems("1","2","3");
+		location.setItems("Слесарный участок","Механический участок","Участок РМ");
 		numberAON.setRequiredIndicatorVisible(true);
 		numberAON.setMinLength(1);
 		numberAON.setMaxLength(18);
 		numberAON.setHelperText("Формат: 123");
-		//horizontalLayout.setFlexGrow(1,date);
-		//horizontalLayout.setFlexGrow(1,location);
-		//horizontalLayout.setFlexGrow(1,numberAON);
-		//horizontalLayout.setJustifyContentMode(JustifyContentMode.AROUND);
-		//horizontalLayout.setWidthFull();
-		//horizontalLayout.setAlignItems(Alignment.BASELINE);
 		return new HorizontalLayout(date,location,numberAON);
 	}
 	public static abstract class ContactFormEvent extends ComponentEvent<FormView> {

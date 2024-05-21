@@ -19,17 +19,16 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 	private final LoginForm login = new LoginForm();
 
 	public LoginView(){
-		addClassName("login-view");
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
 		setJustifyContentMode(JustifyContentMode.CENTER);
 
 		login.setAction("login");
-		login.addLoginListener(e -> {
-			UI.getCurrent().navigate(HomeView.class);
-		});
+//		login.addLoginListener(e -> {
+//			UI.getCurrent().navigate(HomeView.class);
+//		});
 		login.addForgotPasswordListener(e -> {
-			Notification.show("forgot password");
+			Notification.show("Связь с техподдержкой тел. 21-11");
 		});
 
 		add(new H1("Работа с АОН"));

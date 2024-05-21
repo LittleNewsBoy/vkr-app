@@ -19,41 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class MainLayout extends AppLayout {
 
-//	public MainLayout(SecurityService securityService) {
-//		DrawerToggle toggle = new DrawerToggle();
-//
-//		H1 title = new H1("MyApp");
-//		title.getStyle().set("font-size", "var(--lumo-font-size-l)")
-//				.set("margin", "0");
-//
-//		new Button("Logout", e -> securityService.logout());
-//
-//		SideNav nav = getSideNav();
-//
-//		Scroller scroller = new Scroller(nav);
-//		scroller.setClassName(LumoUtility.Padding.SMALL);
-//
-//		addToDrawer(scroller);
-//		addToNavbar(toggle, title);
-//	}
-//
-//	private SideNav getSideNav() {
-//		SideNav sideNav = new SideNav();
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
-//			sideNav.addItem(
-//					new SideNavItem("Home", HomeView.class, VaadinIcon.CHART.create()),
-//					new SideNavItem("User", HomeView.class, VaadinIcon.DASHBOARD.create()),
-//					new SideNavItem("Logout", HomeView.class, VaadinIcon.LIST.create()));
-//		}else {
-//			sideNav.addItem(
-//					new SideNavItem("Home", HomeView.class, VaadinIcon.CHART.create()),
-//					new SideNavItem("Admin", HomeView.class, VaadinIcon.CART.create()),
-//					new SideNavItem("User", HomeView.class, VaadinIcon.DASHBOARD.create()),
-//					new SideNavItem("Logout", HomeView.class, VaadinIcon.LIST.create()));
-//		}
-//		return sideNav;
-//	}
 private final SecurityService securityService;
 
 	public MainLayout(SecurityService securityService) {
@@ -63,7 +28,7 @@ private final SecurityService securityService;
 	}
 
 	private void createHeader() {
-		H1 logo = new H1("Vaadin CRM");
+		H1 logo = new H1("РИРВ... он никогда не меняется");
 		logo.addClassNames(
 				LumoUtility.FontSize.LARGE,
 				LumoUtility.Margin.MEDIUM);
@@ -100,7 +65,5 @@ private final SecurityService securityService;
 					new RouterLink("Chat", ChatView.class)
 			));
 		}
-
 	}
-
 }

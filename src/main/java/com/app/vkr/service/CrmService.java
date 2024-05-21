@@ -1,6 +1,7 @@
 package com.app.vkr.service;
 
 import com.app.vkr.entity.AppUser;
+import com.app.vkr.repo.TodoRepo;
 import com.app.vkr.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,9 +16,11 @@ public class CrmService {
 	private PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
+	private final TodoRepo todoRepo;
 
-	public CrmService(UserRepository userRepository) {
+	public CrmService(UserRepository userRepository, TodoRepo todoRepo) {
 		this.userRepository = userRepository;
+		this.todoRepo = todoRepo;
 	}
 
 	public List<AppUser> findAllUsers(String stringFilter) {

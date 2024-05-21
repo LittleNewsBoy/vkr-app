@@ -20,7 +20,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 
-@Route(value = "home", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 @PermitAll
 public class HomeView extends VerticalLayout {
 	Grid<AON> grid = new Grid<>(AON.class, false);
@@ -90,6 +90,7 @@ public class HomeView extends VerticalLayout {
 		filterText.addValueChangeListener(e -> updateList());
 
 		Button addAONButton = new Button("Add AON");
+		addAONButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 		addAONButton.addClickListener(e -> addAON());
 
 		return new HorizontalLayout(filterText, addAONButton);

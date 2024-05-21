@@ -75,7 +75,6 @@ public class UserForm extends FormLayout {
 		}
 	}
 
-	// Events
 	public static abstract class ContactFormEvent extends ComponentEvent<UserForm> {
 		private final AppUser user;
 
@@ -115,6 +114,7 @@ public class UserForm extends FormLayout {
 	public Registration addSaveListener(ComponentEventListener<SaveEvent> listener) {
 		return addListener(SaveEvent.class, listener);
 	}
+
 	public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
 		return addListener(CloseEvent.class, listener);
 	}

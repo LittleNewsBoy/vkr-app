@@ -5,6 +5,7 @@ import com.app.vkr.service.CrmService;
 import com.app.vkr.view.layout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -82,7 +83,8 @@ public class AdminView extends VerticalLayout {
 		filterText.setValueChangeMode(ValueChangeMode.LAZY);
 		filterText.addValueChangeListener(e -> updateList());
 
-		Button addUserButton =new Button("Add user...");
+		Button addUserButton =new Button("Add User");
+		addUserButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 		addUserButton.addClickListener(e -> addUser());
 
@@ -113,6 +115,4 @@ public class AdminView extends VerticalLayout {
 			addClassName("editing");
 		}
 	}
-
-
 }
