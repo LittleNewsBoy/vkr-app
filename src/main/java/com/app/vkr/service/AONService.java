@@ -8,6 +8,8 @@ import com.app.vkr.repo.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,6 +25,9 @@ public class AONService {
 		} else {
 			return aonRepository.search(stringFilter);
 		}
+	}
+	public List<AON> findAllAONToReport() {
+		return aonRepository.findAll();
 	}
 
 	public List<AON> findAllByUsernameAON() {
@@ -45,5 +50,10 @@ public class AONService {
 
 	public void deleteAON(AON aon) {
 		aonRepository.delete(aon);
+	}
+
+	public List<AON> findByDate(LocalDate begin, LocalDate end){
+
+		return aonRepository.searchByDate(Date.valueOf(begin),Date.valueOf(end));
 	}
 }

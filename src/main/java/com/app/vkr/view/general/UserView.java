@@ -6,6 +6,7 @@ import com.app.vkr.service.AONService;
 import com.app.vkr.service.CrmService;
 import com.app.vkr.view.layout.MainLayout;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -14,9 +15,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
+import lombok.Getter;
+import org.springframework.context.annotation.Bean;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+@Getter
 @Route(value = "userView", layout = MainLayout.class)
 @PermitAll
 public class UserView extends VerticalLayout {
@@ -24,6 +32,8 @@ public class UserView extends VerticalLayout {
 	Button primaryButton = new Button("Создать отчет по АОН за промежуток времени: ");
 	DatePicker startDatePicker = new DatePicker("Выберите дату начала отчета:");
 	DatePicker finishDatePicker = new DatePicker("Выберите дату конца отчета:");
+	LocalDate start;
+	LocalDate end;
 	Locale locale = new Locale("ru", "RU");
 	Grid<AON> grid = new Grid<>(AON.class, false);
 
@@ -42,16 +52,23 @@ public class UserView extends VerticalLayout {
 		grid.addClassName("users-grid");
 		grid.setColumns("date","location","product","decimalNumber");
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
-		grid.setItems(service.findAllByUsernameAON());
+		grid.setItems(service.findByDate(startDatePicker.getValue(),finishDatePicker.getValue()));
 		return grid;
 	}
 
 	private Component createLayout1() {
 		primaryButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 		primaryButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+		primaryButton.addClickListener(e -> {
+			UI.getCurrent().navigate(ReportView.class);
+		});
 
 		startDatePicker.setLocale(locale);
 		finishDatePicker.setLocale(locale);
+
+		LocalDate date = LocalDate.now();
+		startDatePicker.setValue(date.minusWeeks(3));
+		finishDatePicker.setValue(date);
 
 		startDatePicker.addValueChangeListener(e -> finishDatePicker.setMin(e.getValue()));
 		finishDatePicker.addValueChangeListener(e -> startDatePicker.setMax(e.getValue()));
