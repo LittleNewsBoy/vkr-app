@@ -65,12 +65,15 @@ public class ChatView extends VerticalLayout {
 	}
 
 	private HorizontalLayout getHorizontalLayout() {
+
 		var messageList = new CollaborationMessageList(userInfo, "new AON");
+		messageList.setWidth("500px");
 		VerticalLayout ver1 = new VerticalLayout(new H1("Chat"), messageList,new CollaborationMessageInput(messageList));
 		VerticalLayout ver2 = new VerticalLayout(new H1("Todo"), new HorizontalLayout(task, button, buttonDone), todos);
+		ver1.setHeight("500px");
 		HorizontalLayout horizontalLayout = new HorizontalLayout(ver1,ver2);
-
 		horizontalLayout.setSpacing(false);
+
 		horizontalLayout.setAlignItems(Alignment.BASELINE);
 		horizontalLayout.setSizeFull();
 

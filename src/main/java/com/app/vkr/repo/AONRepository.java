@@ -22,7 +22,6 @@ public interface AONRepository extends JpaRepository<AON,Long> {
 			"where lower(c.username) like lower(concat('%', :searchTerm, '%'))")
 	List<AON> searchByName(@Param("searchTerm") String searchTerm);
 
-	//@Query("from AON where date <= begin and date >= end")
 	@Query(nativeQuery = true, value = "select * from AON c where c.date >= :begin and c.date <= :end")
 	List<AON> searchByDate(Date begin, Date end);
 }

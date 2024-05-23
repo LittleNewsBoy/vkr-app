@@ -52,7 +52,7 @@ public class UserView extends VerticalLayout {
 		grid.addClassName("users-grid");
 		grid.setColumns("date","location","product","decimalNumber");
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
-		grid.setItems(service.findByDate(startDatePicker.getValue(),finishDatePicker.getValue()));
+		grid.setItems(service.findAllByUsernameAON());
 		return grid;
 	}
 
