@@ -1,11 +1,6 @@
-package com.app.vkr.view.general;
+package com.app.vkr.view.homeView;
 
 import com.app.vkr.entity.AON;
-import com.app.vkr.entity.AppUser;
-import com.app.vkr.repo.AONRepository;
-import com.app.vkr.service.AONService;
-import com.app.vkr.service.CrmService;
-import com.app.vkr.view.adminView.UserForm;
 import com.app.vkr.view.layout.MainLayout;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
@@ -14,7 +9,6 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -29,7 +23,6 @@ import jakarta.annotation.security.PermitAll;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.Locale;
 
 @Route(value = "formView", layout = MainLayout.class)
@@ -103,7 +96,7 @@ public class FormView extends FormLayout {
 					.setHelperText(e.getValue().length() + "/" + charLimit);
 		});
 		decision.setWidthFull();
-		decision.setLabel("Решение по дефектам::");
+		decision.setLabel("Решение по дефектам:");
 		decision.setMaxLength(charLimit);
 		decision.setValueChangeMode(ValueChangeMode.EAGER);
 		decision.addValueChangeListener(e -> {

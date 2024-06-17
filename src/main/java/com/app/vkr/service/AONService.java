@@ -35,7 +35,7 @@ public class AONService {
 		return aonRepository.searchByName(username);
 	}
 
-	public long countAON (){
+	public long countAON(){
 		return aonRepository.count();
 	}
 

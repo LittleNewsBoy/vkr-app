@@ -1,9 +1,7 @@
-package com.app.vkr.view.general;
+package com.app.vkr.view.generalView;
 
 import com.app.vkr.entity.AON;
-import com.app.vkr.entity.AppUser;
 import com.app.vkr.service.AONService;
-import com.app.vkr.service.CrmService;
 import com.app.vkr.view.layout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -16,12 +14,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import lombok.Getter;
-import org.springframework.context.annotation.Bean;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 @Getter

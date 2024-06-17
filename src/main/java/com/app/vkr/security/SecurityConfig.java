@@ -1,7 +1,7 @@
 package com.app.vkr.security;
 
 import com.app.vkr.service.UserService;
-import com.app.vkr.view.general.LoginView;
+import com.app.vkr.view.generalView.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity // <1>
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig extends VaadinWebSecurity {
 
@@ -31,8 +31,8 @@ public class SecurityConfig extends VaadinWebSecurity {
         setLoginView(http, LoginView.class);
     }
 
-@Bean
-public UserDetailsService userDetailsService(){
+	@Bean
+	public UserDetailsService userDetailsService(){
 	return userService;
 }
 

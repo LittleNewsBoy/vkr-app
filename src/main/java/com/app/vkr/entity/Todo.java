@@ -6,8 +6,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Table(name = "ToDo")
 @Entity
+@Table(name = "ToDo")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

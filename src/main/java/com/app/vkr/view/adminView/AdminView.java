@@ -100,7 +100,7 @@ public class AdminView extends VerticalLayout {
 
 	private void configureGrid() {
 		grid.addClassName("users-grid");
-		grid.setColumns("username","password","role");
+		grid.setColumns("username","role");
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
 		grid.asSingleSelect().addValueChangeListener(e -> editUser(e.getValue()));

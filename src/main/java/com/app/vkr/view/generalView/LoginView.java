@@ -1,6 +1,5 @@
-package com.app.vkr.view.general;
+package com.app.vkr.view.generalView;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.notification.Notification;
@@ -24,9 +23,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 		setJustifyContentMode(JustifyContentMode.CENTER);
 
 		login.setAction("login");
-//		login.addLoginListener(e -> {
-//			UI.getCurrent().navigate(HomeView.class);
-//		});
 		login.addForgotPasswordListener(e -> {
 			Notification.show("Связь с техподдержкой тел. 21-11");
 		});

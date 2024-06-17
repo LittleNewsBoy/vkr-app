@@ -16,11 +16,9 @@ public class CrmService {
 	private PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
-	private final TodoRepo todoRepo;
 
-	public CrmService(UserRepository userRepository, TodoRepo todoRepo) {
+	public CrmService(UserRepository userRepository) {
 		this.userRepository = userRepository;
-		this.todoRepo = todoRepo;
 	}
 
 	public List<AppUser> findAllUsers(String stringFilter) {

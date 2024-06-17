@@ -1,14 +1,13 @@
 package com.app.vkr.view.layout;
 
 import com.app.vkr.security.SecurityService;
-import com.app.vkr.view.general.ChatView;
-import com.app.vkr.view.general.HomeView;
-import com.app.vkr.view.general.UserView;
+import com.app.vkr.view.generalView.ChatView;
+import com.app.vkr.view.homeView.HomeView;
+import com.app.vkr.view.generalView.UserView;
 import com.app.vkr.view.adminView.AdminView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -17,6 +16,9 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 public class MainLayout extends AppLayout {
 
@@ -29,7 +31,8 @@ private final SecurityService securityService;
 	}
 
 	private void createHeader() {
-		H3 logo = new H3("РИРВ... он никогда не меняется");
+		LocalDate date = LocalDate.now();
+		H3 logo = new H3("РИРВ/Сегодняшняя дата: "+ date);
 		logo.addClassNames(
 				LumoUtility.FontSize.LARGE,
 				LumoUtility.Margin.MEDIUM);
@@ -40,7 +43,7 @@ private final SecurityService securityService;
 		var header = new HorizontalLayout(new DrawerToggle(), logo, logout);
 
 		header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-		header.expand(logo); // <4>
+		header.expand(logo);
 		header.setWidthFull();
 		header.addClassNames(
 				LumoUtility.Padding.Vertical.NONE,
